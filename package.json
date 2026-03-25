@@ -1,0 +1,75 @@
+{
+  "name": "emocode",
+  "displayName": "EmoCode",
+  "description": "根据代码错误状态自动切换VS Code主题",
+  "version": "1.0.0",
+  "publisher": "emocode",
+  "engines": {
+    "vscode": "^1.75.0"
+  },
+  "categories": [
+    "Other",
+    "Themes"
+  ],
+  "activationEvents": [
+    "workspaceContains:**/*"
+  ],
+  "main": "./out/extension.js",
+  "contributes": {
+    "configuration": {
+      "title": "EmoCode",
+      "properties": {
+        "emocode.enabled": {
+          "type": "boolean",
+          "default": true,
+          "description": "启用根据错误状态自动切换主题"
+        },
+        "emocode.themeMapping": {
+          "type": "object",
+          "default": {
+            "angry": "Default Dark+",
+            "happy": "Default Light+",
+            "anxious": "Monokai"
+          },
+          "description": "状态到主题的映射: angry(有错误) / happy(无错误) / anxious(有警告)"
+        },
+        "emocode.showNotification": {
+          "type": "boolean",
+          "default": true,
+          "description": "切换主题时显示通知"
+        },
+        "emocode.autoSwitch": {
+          "type": "boolean",
+          "default": true,
+          "description": "自动切换主题（关闭后可使用手动命令切换）"
+        }
+      }
+    },
+    "commands": [
+      {
+        "command": "emocode.check",
+        "title": "EmoCode: 检查代码状态",
+        "category": "EmoCode"
+      },
+      {
+        "command": "emocode.showLog",
+        "title": "EmoCode: 查看日志",
+        "category": "EmoCode"
+      },
+      {
+        "command": "emocode.toggle",
+        "title": "EmoCode: 启用/禁用",
+        "category": "EmoCode"
+      }
+    ]
+  },
+  "scripts": {
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./"
+  },
+  "devDependencies": {
+    "@types/node": "^16.18.0",
+    "@types/vscode": "^1.75.0",
+    "typescript": "^5.0.0"
+  }
+}
